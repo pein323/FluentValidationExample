@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation.AspNetCore;
+using FluentValidationExample.Validators;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -36,7 +37,10 @@ namespace FluentValidationExample
             services
                 .AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                .AddFluentValidation(); //Add Fluent Validation to our MVC APP
+                .AddFluentValidation(
+                    fv => fv.RegisterValidatorsFromAssemblyContaining<UserModelValidator>()); //Add Fluent Validation to our MVC APP
+
+
 
 
         }

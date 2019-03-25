@@ -11,10 +11,13 @@ namespace FluentValidationExample.Controllers
             return View(new UserModelDA());
         }
 
-        // Post
         [HttpPost]
-        public IActionResult Post(UserModelDA model)
+        public IActionResult FormValidation(UserModelDA model)
         {
+            if (this.ModelState.IsValid)
+            {
+                ViewBag.SuccessMessage = "Great!";
+            }
             return View();
         }
     }
