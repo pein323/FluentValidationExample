@@ -1,4 +1,6 @@
-﻿using FluentValidationExample.Models;
+﻿using FluentValidation.AspNetCore;
+using FluentValidationExample.Models;
+using FluentValidationExample.Validators;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FluentValidationExample.Controllers
@@ -13,9 +15,13 @@ namespace FluentValidationExample.Controllers
 
         // Post
         [HttpPost]
-        public IActionResult Post(UserModelFV model)
+        public IActionResult Index(UserModelFV model)
         {
-            return View();
+            var validator = new UserModelValidator();
+
+            var results = validator.Validate(model);
+            results.AddToModelState(ModelState, null);
+            return View(model);
         }
     }
 }

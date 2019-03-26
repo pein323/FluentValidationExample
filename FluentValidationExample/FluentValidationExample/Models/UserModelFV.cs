@@ -14,5 +14,8 @@ namespace FluentValidationExample.Models
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Email Address")]
+        public string EmailAddress { get; set; }
     }
 }
