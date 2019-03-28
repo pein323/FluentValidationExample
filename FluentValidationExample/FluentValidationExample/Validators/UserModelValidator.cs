@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using FluentValidation;
 using FluentValidation.Validators;
 using FluentValidationExample.Models;
@@ -30,6 +31,12 @@ namespace FluentValidationExample.Validators
                 .NotNull()
                 .EmailAddress()
                 .EmailAddressFromDomain("pgs-soft.pl");
+
+            RuleForEach(user => user.AddressLines)
+                .NotNull()
+                .WithMessage("Adress line should not be null");
+
+
         }
     }
 

@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace FluentValidationExample.Models
 {
@@ -17,5 +19,11 @@ namespace FluentValidationExample.Models
 
         [Display(Name = "Email Address")]
         public string EmailAddress { get; set; }
+
+        [Display(Name = "Address")]
+        public List<string> AddressLines { get; set; } = new List<string>()
+        {
+            "",""
+        };
     }
 }
