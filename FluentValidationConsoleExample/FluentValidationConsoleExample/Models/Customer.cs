@@ -9,6 +9,6 @@
         public string Forename { get; set; }
         public string Surname { get; set; }
         public decimal Discount { get; set; }
-        public string Address { get; set; }
+        public Address Address { get; set; }
     }
 }

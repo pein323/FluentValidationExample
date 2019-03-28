@@ -4,7 +4,7 @@ using FluentValidationConsoleExample.Constants;
 using FluentValidationConsoleExample.Validators;
 using Xunit;
 
-namespace FluentValidationConsoleExample.Tests
+namespace FluentValidationConsoleExample.Validators.Tests
 {
     public class CustomerValidatorTests
     {
@@ -18,7 +18,8 @@ namespace FluentValidationConsoleExample.Tests
         [Fact]
         public void CustomerValidator_WhenUsernameIsNull_ShouldHaveError()
         {
-            validator.ShouldHaveValidationErrorFor(customer => customer.Username, null as string);
+            validator
+                .ShouldHaveValidationErrorFor(customer => customer.Username, null as string);
         }
 
         [Fact]
@@ -32,20 +33,29 @@ namespace FluentValidationConsoleExample.Tests
         [Fact]
         public void CustomerValidator_WhenUsernameIsFoo_ShouldHaveError()
         {
-            validator.ShouldHaveValidationErrorFor(customer => customer.Username, "foo");
+            validator
+                .ShouldHaveValidationErrorFor(customer => customer.Username, "foo");
         }
 
         [Fact]
         public void CustomerValidator_WhenUsernameIsFoo_ShouldHaveError_WithMessage()
         {
-            validator.ShouldHaveValidationErrorFor(customer => customer.Username, "foo")
+            validator
+                .ShouldHaveValidationErrorFor(customer => customer.Username, "foo")
                 .WithErrorMessage(ErrorMessages.FooUsernameErrorMessage);
         }
 
         [Fact]
         public void CustomerValidator_WhenUsernameIsNotNull_ShouldNotHaveError()
         {
-            validator.ShouldNotHaveValidationErrorFor(customer => customer.Username, "Grazyna");
+            validator
+                .ShouldNotHaveValidationErrorFor(customer => customer.Username, "Grazyna");
+        }
+
+        [Fact]
+        public void CustomerValidator_WhenAddressPostCodeIsNull_ShouldHaveChildValidator()
+        {
+            validator.ShouldHaveChildValidator(customer => customer.Address, typeof(AddressValidator));
         }
     }
 }
